@@ -17,7 +17,7 @@ const path = require("path");
 const TEST_FIREBASE_PROJECT_ID = "test-firestore-rules-project";
 
 // TODO: Change this to your real Firebase Project ID
-const REAL_FIREBASE_PROJECT_ID = "changeme";
+const REAL_FIREBASE_PROJECT_ID = "fir-codelab-test-7d5ea";
 
 const firebase = require("@firebase/rules-unit-testing");
 
@@ -83,6 +83,7 @@ describe("shopping carts", () => {
     await resetData(admin, TEST_FIREBASE_PROJECT_ID);
   });
 
+
   it('can be created and updated by the cart owner', async () => {
     // Alice can create her own cart
     await firebase.assertSucceeds(aliceDb.doc("carts/alicesCart").set({
@@ -120,6 +121,7 @@ describe("shopping carts", () => {
     // Bob can't read Alice's cart
     await firebase.assertFails(bobDb.doc("carts/alicesCart").get());
   });
+
 });
 
 describe("shopping cart items", async () => {
@@ -179,7 +181,7 @@ describe("shopping cart items", async () => {
   });
 });
 
-describe.skip("adding an item to the cart recalculates the cart total. ", () => {
+describe("adding an item to the cart recalculates the cart total. ", () => {
   const admin = firebase.initializeAdminApp({ 
     projectId: REAL_FIREBASE_PROJECT_ID 
   }).firestore();
